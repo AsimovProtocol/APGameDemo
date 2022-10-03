@@ -667,6 +667,61 @@ Transform:
   m_Father: {fileID: 158741098}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1806054296
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1806054298}
+  - component: {fileID: 1806054297}
+  m_Layer: 0
+  m_Name: Room1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1806054297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806054296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6e50b1908c2d9a4fa925c7b21482b13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  generate: 1
+  size: {x: 24, y: 3, z: 3}
+  angle: 90
+  doorSize: {x: 3, y: 3}
+  doorFront: 1
+  doorBack: 1
+  doorLeft: 0
+  doorRight: 0
+  floorTile: {fileID: 7559990717355410157, guid: 32a4702d5dc175945bfef2d2920984c7, type: 3}
+  wallTile: {fileID: 6632288814747263467, guid: f338c4e8f7d51154ca3566062e6c2db4, type: 3}
+  roofTile: {fileID: 6716370962104953633, guid: 78a7393ed3a1af64a807f18333274388, type: 3}
+--- !u!4 &1806054298
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806054296}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.04768457, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2111737980
 GameObject:
   m_ObjectHideFlags: 0
