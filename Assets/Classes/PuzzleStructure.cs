@@ -7,9 +7,9 @@ public class PuzzleStructure
 {
     private List<Puzzle> Puzzles { get; }
 
-    private int Progress => Puzzles.Sum(p => p.Progress);
-    private int MaxProgress => Puzzles.Sum(p => p.MaxProgress);
-    private bool Completed => Puzzles.All(p => p.Solved);
+    public int Progress => Puzzles.Sum(p => p.Progress);
+    public int MaxProgress => Puzzles.Sum(p => p.MaxProgress);
+    public bool Completed => Puzzles.All(p => p.Solved);
 
     public PuzzleStructure(List<Puzzle> puzzles)
     {

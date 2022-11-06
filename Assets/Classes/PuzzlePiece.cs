@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class PuzzlePiece : MonoBehaviour
 {
-    private Puzzle Parent { get; }
+    public Puzzle Parent { get; set; }
 
     public PuzzlePiece(Puzzle parent)
     {
         Parent = parent;
+    }
+
+    protected PuzzlePiece()
+    {
+        Parent = null;
     }
 
     public void addProgress()

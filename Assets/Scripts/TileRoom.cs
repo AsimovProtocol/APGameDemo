@@ -1,11 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Classes;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class TileRoom : MonoBehaviour
 {
-    [SerializeField] private bool generate;
     [SerializeField] private Vector3 size = Vector3.one;
     [SerializeField] private float angle = 0;
     [SerializeField] private Vector2 doorSize = Vector2.zero;
@@ -16,6 +17,8 @@ public class TileRoom : MonoBehaviour
     [SerializeField] private GameObject floorTile;
     [SerializeField] private GameObject wallTile;
     [SerializeField] private GameObject roofTile;
+
+    public List<TileMountPosition> GenTiles = new();
 
     private Transform tr;
     private Vector3 pos;
@@ -31,11 +34,6 @@ public class TileRoom : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (generate)
-        {
-            GenerateSquare();
-            generate = false;
-        }
     }
 
     // Generates a tile with the given parameters and adds it to the parent object
@@ -45,8 +43,13 @@ public class TileRoom : MonoBehaviour
         tile.transform.parent = tr;
     }
 
+    void AddGenTile(float x, float y, float z, float tileAngle)
+    {
+        GenTiles.Add(new TileMountPosition(new Vector3(x + pos.x, y + pos.y + 0.5f, z + pos.z), Quaternion.Euler(0, tileAngle + angle, 0), this));
+    }
+
     // Generates a square room
-    void GenerateSquare()
+    public void GenerateSquare()
     {
         GenerateFloorSquare();
         GenerateRoofSquare();
@@ -54,6 +57,10 @@ public class TileRoom : MonoBehaviour
         GenerateWallSquareFront(doorBack, true);
         GenerateWallSquareSide(doorLeft, true);
         GenerateWallSquareSide(doorRight, false);
+    }
+
+    public void Populated()
+    {
         tr.Rotate(Vector3.up, angle);
     }
 
@@ -98,6 +105,8 @@ public class TileRoom : MonoBehaviour
                 }
 
                 GenerateTile(wallTile, x, y, z, tileAngle);
+                if (Math.Floor(x) % 3 == 0 && y == 1 && Math.Floor(x) < size.x - 2)
+                    AddGenTile(x, y, z, tileAngle);
             }
         }
     }
@@ -118,6 +127,8 @@ public class TileRoom : MonoBehaviour
                 }
 
                 GenerateTile(wallTile, x, y, z + offset, tileAngle);
+                if (Math.Floor(z) % 3 == 0 && y == 1 && Math.Floor(z) < size.z - 2)
+                    AddGenTile(x, y, z, tileAngle);
             }
         }
     }

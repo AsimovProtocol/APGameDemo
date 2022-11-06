@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Classes;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -21,6 +22,7 @@ public class Player : MonoBehaviour
     private Transform tr;
     private Transform ct;
     private PlayerInput playerInput;
+    private CameraLooking cameraLooking;
 
     // Variables
     private bool inputJump;
@@ -37,6 +39,7 @@ public class Player : MonoBehaviour
         this.tr = GetComponent<Transform>();
         this.ct = playerCamera.transform;
         this.playerInput = GetComponent<PlayerInput>();
+        this.cameraLooking = playerCamera.GetComponent<CameraLooking>();
     }
 
     // Update is called once per frame
@@ -103,5 +106,10 @@ public class Player : MonoBehaviour
                 this.gamepadLook = look;
                 break;
         }
+    }
+
+    private void OnInteract(InputValue value)
+    {
+        foreach (IInteractable i in cameraLooking.looking.GetComponents<IInteractable>()) i.Interact();
     }
 }
