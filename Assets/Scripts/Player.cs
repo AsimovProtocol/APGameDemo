@@ -1,8 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Classes;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,33 +9,37 @@ public class Player : MonoBehaviour
     [SerializeField] private float moveSpeed = 0.5f;
     [SerializeField] private float lookSpeedMouse = 0.5f;
     [SerializeField] private float lookSpeedGamepad = 5f;
-    [SerializeField] private Camera playerCamera = null;
+    [SerializeField] private Camera playerCamera;
     [SerializeField] private LayerMask playerMeshMask = 0;
-    [SerializeField] private Transform playerGroundCollider = null;
-
-    // Create references
-    private Rigidbody rb;
-    private Transform tr;
-    private Transform ct;
-    private PlayerInput playerInput;
+    [SerializeField] private Transform playerGroundCollider;
     private CameraLooking cameraLooking;
+    private Transform ct;
+    private Vector2 gamepadLook;
 
     // Variables
     private bool inputJump;
     private Vector2 inputMove;
-    private Vector2 gamepadLook;
-    private float totalPitch;
     private bool onGround;
+    private PlayerInput playerInput;
+
+    // Create references
+    private Rigidbody rb;
+    private float totalPitch;
+    private Transform tr;
 
     // Start is called before the first frame update
     private void Start()
     {
+        //hide cursor
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
+
         // initialize references
-        this.rb = GetComponent<Rigidbody>();
-        this.tr = GetComponent<Transform>();
-        this.ct = playerCamera.transform;
-        this.playerInput = GetComponent<PlayerInput>();
-        this.cameraLooking = playerCamera.GetComponent<CameraLooking>();
+        rb = GetComponent<Rigidbody>();
+        tr = GetComponent<Transform>();
+        ct = playerCamera.transform;
+        playerInput = GetComponent<PlayerInput>();
+        cameraLooking = playerCamera.GetComponent<CameraLooking>();
     }
 
     // Update is called once per frame
@@ -58,7 +58,7 @@ public class Player : MonoBehaviour
      */
     private void RotateCameraPitch(float delta)
     {
-        float pitch = totalPitch;
+        var pitch = totalPitch;
         totalPitch = Mathf.Clamp(totalPitch + delta, -90, 90);
         ct.Rotate(Vector3.left, totalPitch - pitch);
     }
@@ -85,17 +85,17 @@ public class Player : MonoBehaviour
 
     private void OnMove(InputValue value)
     {
-        this.inputMove = value.Get<Vector2>();
+        inputMove = value.Get<Vector2>();
     }
 
     private void OnJump(InputValue value)
     {
-        this.inputJump = true;
+        inputJump = true;
     }
 
     private void OnLook(InputValue value)
     {
-        Vector2 look = value.Get<Vector2>();
+        var look = value.Get<Vector2>();
         switch (playerInput.currentControlScheme)
         {
             case "Keyboard&Mouse":
@@ -103,13 +103,13 @@ public class Player : MonoBehaviour
                 RotateCameraPitch(look.y * lookSpeedMouse);
                 break;
             case "Gamepad":
-                this.gamepadLook = look;
+                gamepadLook = look;
                 break;
         }
     }
 
     private void OnInteract(InputValue value)
     {
-        foreach (IInteractable i in cameraLooking.looking.GetComponents<IInteractable>()) i.Interact();
+        foreach (var i in cameraLooking.looking.GetComponents<IInteractable>()) i.Interact();
     }
 }
