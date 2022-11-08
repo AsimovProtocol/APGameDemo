@@ -49,8 +49,15 @@ MonoBehaviour:
   doorSize: {x: 4, y: 4}
   doorFront: 1
   doorBack: 1
-  doorLeft: 0
-  doorRight: 0
+  doorLeft: 1
+  doorRight: 1
   floorTile: {fileID: 7559990717355410157, guid: 32a4702d5dc175945bfef2d2920984c7, type: 3}
   wallTile: {fileID: 6632288814747263467, guid: f338c4e8f7d51154ca3566062e6c2db4, type: 3}
   roofTile: {fileID: 6716370962104953633, guid: 78a7393ed3a1af64a807f18333274388, type: 3}
+  backDoorTile: {fileID: 6562357876887663507, guid: 888e01e20aa6df44e8dfea2b3a43ba90, type: 3}
+  thisPrefab: {fileID: 5136229670919980354}
+  roomCompletionPrefab: {fileID: -4456964091302489332, guid: cc301bf1abf0bb74a89f1df62ed680c7, type: 3}
+  mainRoom: 1
+  backDoor: {fileID: 0}
+  roomCompletion: {fileID: 0}
+  corridor: {fileID: 0}
