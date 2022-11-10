@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     // Expose player controls
     [SerializeField] private float jumpForce = 300f;
     [SerializeField] private float moveSpeed = 0.5f;
-    [SerializeField] private float lookSpeedMouse = 0.5f;
+    [SerializeField] private float lookSpeedMouse = 0.2f;
     [SerializeField] private float lookSpeedGamepad = 5f;
     [SerializeField] private Camera playerCamera;
     [SerializeField] private LayerMask playerMeshMask = 0;

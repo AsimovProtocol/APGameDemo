@@ -176,8 +176,7 @@ public class TileRoom : MonoBehaviour
             ;
 
             GenerateTile(wallTile, x, y, z, tileAngle);
-            if (Math.Floor(x) % 3 == 0 && y == 1 && Math.Floor(x) < size.x - 2 && x > 1)
-                AddGenTile(x, y, z, tileAngle);
+            if (Math.Floor(x) % 3 == 0 && y == 1 && Math.Floor(x) < size.x - 2 && x > 1) AddGenTile(x, y, z, tileAngle);
         }
     }
 
@@ -218,8 +217,7 @@ public class TileRoom : MonoBehaviour
             }
 
             GenerateTile(wallTile, x, y, z + offset, tileAngle);
-            if (Math.Floor(z) % 3 == 0 && y == 1 && Math.Floor(z) < size.z - 2 && z > 1)
-                AddGenTile(x, y, z, tileAngle);
+            if (Math.Floor(z) % 3 == 0 && y == 1 && Math.Floor(z) < size.z - 2 && z > 1) AddGenTile(x, y, z, tileAngle);
         }
     }
 }
